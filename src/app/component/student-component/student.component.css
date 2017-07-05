@@ -1,0 +1,31 @@
+/* CSS for Add Student component */
+.ng-valid[required], .ng-valid.required {
+    border-left: 10px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form) {
+    border-left: 10px solid #a94442; /* red #a94442*/
+}
+
+h1 {
+    color:white;
+    font-weight :300;
+    text-align: center;
+    margin-top:2px;
+}
+
+.h4Special {
+    color:white;
+    text-align: center;
+    margin-top:2px;
+}
+
+
+label {
+    color:white;
+    font-size: 24px;
+    font-weight :300;
+    margin-top: 10px;
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+

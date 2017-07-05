@@ -1,0 +1,88 @@
+<!-- Add Student component -->
+<section id="student">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- On left side of screen show Add Student input box -->
+            <div class="col-md-3" style="background-color:#563d7c;">
+                <div class="form-wrap">
+                    <h1>Add a Student</h1>
+                    <h4 class="h4Special">(Using Reactive Form)</h4>
+                    <form [formGroup]="myForm" novalidate autocomplete="off" (ngSubmit)="addStudent(myForm.value,myForm.valid)">
+                        <!-- Student Name -->
+                        <div class="form-group">
+                            <label for="studentName">Enter Student Name:</label>
+                            <input type="text" class="form-control" formControlName="studentName" name="studentName" placeholder="Enter the Student Name">
+                            <div *ngIf="myForm.controls['studentName'].errors && (myForm.controls['studentName'].dirty || myForm.controls['studentName'].touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="myForm.controls['studentName'].hasError('required')">
+                                    Name is required.
+                                </div>
+                                <div *ngIf="myForm.controls['studentName'].hasError('pattern')">
+                                    Please enter only albhabets.
+                                </div>
+                                <div *ngIf="myForm.controls['studentName'].hasError('minlength')">
+                                    Please enter atleast 2 characeters.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Student Address -->
+                        <div class="form-group">
+                            <label for="studentAddress">Enter Student Address:</label>
+                            <input type="text" class="form-control" formControlName="studentAddress" name="studentAddress" placeholder="Enter the Student Address">
+                        </div>
+                        <!-- Student Subject -->
+                        <div class="form-group">
+                            <label for="studentSubject">Enter Student Subject:</label>
+                            <select class="txt-box" name="studentSubject" formControlName="studentSubject" class="form-control">
+                                <option [value]="null" [disabled]="true">Select Subject</option>
+                                <option *ngFor="let subject of SubjectTypeArray" [ngValue]="subject.id">
+                                    {{subject.type}}
+                                </option>
+                            </select>
+                        </div>
+                        <!-- Student Marks -->
+                        <div class="form-group">
+                            <label for="StudentMarks">Enter Student Marks:</label>
+                            <input type="text" class="form-control" formControlName="studentMarks" name="studentMarks" placeholder="Enter Marks">
+                        </div>
+                        <!-- Submit button -->
+                        <input type="submit" id="btn-submit" class="btn btn-success btn-lg btn-block" value="Add">
+                        <!-- Form reset button -->
+                        <input type="button" id="btn-reset" class="btn btn-info btn-lg btn-block" value="Reset" (click)="resetForm()">
+                    </form>
+                </div>
+                <br>
+                <!-- /.form-wrap -->
+            </div>
+            <!-- /.col-md-3 -->
+            <!-- On right side of screen show Student Data -->
+            <div class="col-md-9" style="background-color:#f0c36d;">
+                <div *ngIf="bolValidForm">
+                    <h2>Just now you inserted below record:</h2>
+                    <hr>
+                    <h4>Name :</h4>
+                    <h3>{{StudentDetail.studentName}}</h3>
+                    <hr>
+                    <h4>Address:</h4>
+                    <h3>{{StudentDetail.studentAddress}}</h3>
+                    <hr>
+                    <h4>Subject:</h4>
+                    <h3 *ngIf="StudentDetail?.studentSubject==1">English</h3>
+                    <h3 *ngIf="StudentDetail?.studentSubject==2">Maths</h3>
+                    <h3 *ngIf="StudentDetail?.studentSubject==3">Science</h3>
+                    <h3 *ngIf="StudentDetail?.studentSubject==4">History</h3>
+                    <h3 *ngIf="StudentDetail?.studentSubject==5">Geography</h3>
+                    <hr>
+                    <h4>Marks:</h4>
+                    <h3>{{StudentDetail.studentMarks}}</h3>
+                    <hr>
+                </div>
+                <div *ngIf="!bolValidForm">
+                    <h2>{{formValidMessage}}</h2>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
